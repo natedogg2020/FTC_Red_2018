@@ -87,10 +87,10 @@ public class FTCRedMecanumDrive extends OpMode {
         ch3 = -gamepad1.left_stick_y;
         ch4 = -gamepad1.left_stick_x;
 
-        robot.frontLeftMotor.setPower(ch3 + ch1 + ch4);
-        robot.rearLeftMotor.setPower(ch3 + ch1 - ch4);
-        robot.rearRightMotor.setPower(ch3 - ch1 - ch4);
-        robot.frontRightMotor.setPower(ch3 - ch1 + ch4);
+        robot.frontLeftMotor.setPower(ch3 + ch1 - ch4);
+        robot.rearLeftMotor.setPower(ch3 + ch1 + ch4);
+        robot.rearRightMotor.setPower(ch3 - ch1 + ch4);
+        robot.frontRightMotor.setPower(ch3 - ch1 - ch4);
         //robot.liftMotor.setPower(gamepad2.left_trigger - gamepad2.right_trigger);
         /**
          *linear lift code
