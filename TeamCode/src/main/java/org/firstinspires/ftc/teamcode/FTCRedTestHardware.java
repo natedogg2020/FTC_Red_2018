@@ -2,14 +2,14 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
- * Created by nmckelvey on 10/11/17.
+ * Created by nmckelvey on 10/23/17.
  */
 
-public class FTCRedHardware1 {
-
+public class FTCRedTestHardware {
     /**
      * This is NOT an opmode.
      *
@@ -30,18 +30,23 @@ public class FTCRedHardware1 {
     /* Public OpMode members. */
     public DcMotor frontLeftMotor   = null;
     public DcMotor frontRightMotor  = null;
-    public DcMotor rearLeftMotor   = null;
-    public DcMotor rearRightMotor  = null;
-    public DcMotor lowerLiftMotor  = null;
-    public DcMotor upperLiftMotor  = null;
+    public DcMotor rearLeftMotor    = null;
+    public DcMotor rearRightMotor   = null;
+    public DcMotor lowerLiftMotor   = null;
+    public DcMotor upperLiftMotor   = null;
+    public Servo leftGlyph          = null;
+    public Servo rightGlyph         = null;
+    public Servo jewel              = null;
+
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
     public static final double MID_SERVO       =  0.0 ;
     public static final double ARM_UP   =  0.6 ;
     public static final double ARM_DOWN = -0.6 ;
+
     /* Constructor */
-    public FTCRedHardware1(){
+    public FTCRedTestHardware(){
 
     }
 
@@ -51,20 +56,18 @@ public class FTCRedHardware1 {
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        frontLeftMotor   = hwMap.dcMotor.get( "fleft");
-        frontRightMotor  = hwMap.get(DcMotor.class, "fright");
-        rearLeftMotor   = hwMap.get(DcMotor.class, "rleft");
-        rearRightMotor  = hwMap.get(DcMotor.class, "rright");
+        frontLeftMotor   = hwMap.dcMotor.get("fleft");
+        frontRightMotor  = hwMap.dcMotor.get("fright");
+        rearLeftMotor   = hwMap.dcMotor.get("rleft");
+        rearRightMotor  = hwMap.dcMotor.get("rright");
+        lowerLiftMotor  = hwMap.dcMotor.get("llift");
+        upperLiftMotor  = hwMap.dcMotor.get("ulift");
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
         rearLeftMotor.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
-        rearRightMotor.setDirection(DcMotor.Direction.FORWARD);
-        lowerLiftMotor  = hwMap.get(DcMotor.class, "llift");
-        upperLiftMotor  = hwMap.get(DcMotor.class, "ulift");
+        rearRightMotor.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         upperLiftMotor.setDirection(DcMotor.Direction.FORWARD);
-        lowerLiftMotor.setDirection(DcMotor.Direction.REVERSE);
-
-        // Set to FORWARD if using AndyMark motors
+        lowerLiftMotor.setDirection(DcMotor.Direction.FORWARD);
         // Set all motors to zero power
         frontLeftMotor.setPower(0);
         frontRightMotor.setPower(0);
@@ -72,15 +75,22 @@ public class FTCRedHardware1 {
         rearRightMotor.setPower(0);
         lowerLiftMotor.setPower(0);
         upperLiftMotor.setPower(0);
-
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
         frontLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rearLeftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rearRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        upperLiftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        lowerLiftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
+        leftGlyph  = hwMap.servo.get("gleft");
+        rightGlyph = hwMap.servo.get("gright");
+        jewel = hwMap.servo.get("jew");
+        leftGlyph.setPosition(ARM_UP);
+        rightGlyph.setPosition(MID_SERVO);
+        jewel.setPosition(0);
 
     }
 
@@ -109,3 +119,16 @@ public class FTCRedHardware1 {
         period.reset();
     }
 }
+  /*
+
+        leftClaw = hwMap.servo.get("left_claw");
+        leftClaw.setPosition(OPEN_SERVO);
+        rightCLaw = hwMap.servo.get("right_claw");
+        rightCLaw.setPosition(MID_SERVO);
+        rightBeaconClaw = hwMap.servo.get("right_bc");
+        rightBeaconClaw.setPosition(MID_SERVO);
+        leftBeaconClaw = hwMap.servo.get("left_bc");
+        leftBeaconClaw .setPosition(CLOSE_SERVO);
+        */
+
+
