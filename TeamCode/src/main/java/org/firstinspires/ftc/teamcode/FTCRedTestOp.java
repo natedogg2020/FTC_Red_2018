@@ -54,9 +54,8 @@ public class FTCRedTestOp extends OpMode {
         double encoderVal;
         double ly;
         double ry;
-        double lift;
         ch1 = gamepad1.right_stick_x;
-        ch2 = 1;
+        ch2 = gamepad1.right_stick_y;
         ch3 = -gamepad1.left_stick_y;
         ch4 = -gamepad1.left_stick_x;
         ly = gamepad2.left_stick_y;
