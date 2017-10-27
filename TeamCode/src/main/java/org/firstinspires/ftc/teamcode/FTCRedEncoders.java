@@ -11,7 +11,6 @@ public class FTCRedEncoders extends OpMode {
 
     /* Declare OpMode members. */
     FTCRedHardware2 robot = new FTCRedHardware2(); // use the class created to define a robot's hardware
-
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -50,16 +49,21 @@ public class FTCRedEncoders extends OpMode {
         double ch2;
         double ch3;
         double ch4;
-        double lEncoderLim;
+        double lEncoderMax;
+        double lEncoderMin;
+        double uEncoderMin;
         double lEncoderVal;
-        double uEncoderLim;
+        double uEncoderMax;
         double uEncoderVal;
         double ly;
         double ry;
         double lift;
         //Encoder Values
-        uEncoderLim = -6000.00;
-        lEncoderLim = -6000.00;
+        uEncoderMax = -4000.00;
+        uEncoderMin = 5000.0;
+        lEncoderMax = -4000.00;
+        lEncoderMin = 5000.0;
+
         //Chassis Drivetrain
         ch1 = gamepad1.right_stick_x;
         ch2 = gamepad1.right_stick_y;
@@ -79,8 +83,25 @@ public class FTCRedEncoders extends OpMode {
         robot.rearLeftMotor.setPower(ch3 + ch1 + ch4);
         robot.rearRightMotor.setPower(ch3 - ch1 + ch4);
         /* <<<<LIFT MOTORS>>>> */
-        robot.lowerLiftMotor.setPower(ly/2);
-        robot.upperLiftMotor.setPower(ry/2);
+        if (ly>0 && ly>= lEncoderMax ){
+            robot.lowerLiftMotor.setPower(ly);
+        } else{
+        robot.upperLiftMotor.setPower(0);
+        }
+        if (ly<0 && ly<= lEncoderMin){
+            robot.lowerLiftMotor.setPower(ly);
+        } else{
+            robot.lowerLiftMotor.setPower(0);
+        } if (ry>0 && ry>= uEncoderMax ){
+            robot.upperLiftMotor.setPower(ry);
+        } else{
+        robot.upperLiftMotor.setPower(0);
+        }
+        if (ry<0 && ry<= uEncoderMin){
+            robot.upperLiftMotor.setPower(ry);
+        } else{
+            robot.upperLiftMotor.setPower(0);
+        }
         /* <<<<SERVOS>>>> */
         if (gamepad2.right_bumper) {
             robot.rightGlyph.setPosition(.6);

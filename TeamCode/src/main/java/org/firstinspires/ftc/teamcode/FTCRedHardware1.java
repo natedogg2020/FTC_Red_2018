@@ -62,8 +62,8 @@ public class FTCRedHardware1 {
         rearRightMotor.setDirection(DcMotor.Direction.FORWARD);
         lowerLiftMotor  = hwMap.get(DcMotor.class, "llift");
         upperLiftMotor  = hwMap.get(DcMotor.class, "ulift");
-        upperLiftMotor.setDirection(DcMotor.Direction.FORWARD);
-        lowerLiftMotor.setDirection(DcMotor.Direction.REVERSE);
+        upperLiftMotor.setDirection(DcMotor.Direction.REVERSE);
+        lowerLiftMotor.setDirection(DcMotor.Direction.FORWARD);
 
 
         // Set to FORWARD if using AndyMark motors

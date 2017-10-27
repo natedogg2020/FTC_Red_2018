@@ -97,14 +97,15 @@ public class FTCRedTestOp extends OpMode {
         robot.lowerLiftMotor.setPower(ly);
         robot.upperLiftMotor.setPower(ry);
 
-        if (gamepad1.right_bumper) {
+        if (gamepad2.right_bumper) {
             robot.rightGlyph.setPosition(.6);
             robot.leftGlyph.setPosition(0);
 
-        } else if (gamepad1.left_bumper) {
+        } else if (gamepad2.left_bumper) {
             robot.rightGlyph.setPosition(0);
             robot.leftGlyph.setPosition(.6);
         }
+
 
             //robot.liftMotor.setPower(gamepad2.left_trigger - gamepad2.right_trigger);
         /**

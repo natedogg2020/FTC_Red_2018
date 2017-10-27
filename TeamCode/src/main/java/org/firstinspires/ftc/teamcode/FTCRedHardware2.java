@@ -66,7 +66,7 @@ public class FTCRedHardware2 {
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
         rearLeftMotor.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         rearRightMotor.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
-        upperLiftMotor.setDirection(DcMotor.Direction.FORWARD);
+        upperLiftMotor.setDirection(DcMotor.Direction.REVERSE);
         lowerLiftMotor.setDirection(DcMotor.Direction.FORWARD);
         // Set all motors to zero power
         frontLeftMotor.setPower(0);
