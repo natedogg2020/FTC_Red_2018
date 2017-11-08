@@ -83,21 +83,21 @@ public class FTCRedEncoders extends OpMode {
         robot.rearLeftMotor.setPower(ch3 + ch1 + ch4);
         robot.rearRightMotor.setPower(ch3 - ch1 + ch4);
         /* <<<<LIFT MOTORS>>>> */
-        if (ly>0 && ly>= lEncoderMax ){
+        if (ly>0 && ly> lEncoderMax ){
             robot.lowerLiftMotor.setPower(ly);
         } else{
         robot.upperLiftMotor.setPower(0);
         }
-        if (ly<0 && ly<= lEncoderMin){
+        if (ly<0 && ly< lEncoderMin){
             robot.lowerLiftMotor.setPower(ly);
         } else{
             robot.lowerLiftMotor.setPower(0);
-        } if (ry>0 && ry>= uEncoderMax ){
+        } if (ry>0 && ry> uEncoderMax ){
             robot.upperLiftMotor.setPower(ry);
         } else{
         robot.upperLiftMotor.setPower(0);
         }
-        if (ry<0 && ry<= uEncoderMin){
+        if (ry<0 && ry< uEncoderMin){
             robot.upperLiftMotor.setPower(ry);
         } else{
             robot.upperLiftMotor.setPower(0);

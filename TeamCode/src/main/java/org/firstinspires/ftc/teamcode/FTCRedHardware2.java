@@ -41,7 +41,7 @@ public class FTCRedHardware2 {
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
-    public static final double MID_SERVO       =  0.0 ;
+    public static final double MID_SERVO  =  0.0 ;
     public static final double ARM_UP   =  0.6 ;
     public static final double ARM_DOWN = -0.6 ;
 
@@ -56,12 +56,12 @@ public class FTCRedHardware2 {
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        frontLeftMotor   = hwMap.dcMotor.get("fleft");
-        frontRightMotor  = hwMap.dcMotor.get("fright");
-        rearLeftMotor   = hwMap.dcMotor.get("rleft");
-        rearRightMotor  = hwMap.dcMotor.get("rright");
-        lowerLiftMotor  = hwMap.dcMotor.get("llift");
-        upperLiftMotor  = hwMap.dcMotor.get("ulift");
+        frontLeftMotor   = hwMap.get(DcMotor.class,"fleft");
+        frontRightMotor  = hwMap.get(DcMotor.class,"fright");
+        rearLeftMotor   = hwMap.get(DcMotor.class,"rleft");
+        rearRightMotor  = hwMap.get(DcMotor.class,"rright");
+        lowerLiftMotor  = hwMap.get(DcMotor.class,"llift");
+        upperLiftMotor  = hwMap.get(DcMotor.class,"ulift");
         frontLeftMotor.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
         rearLeftMotor.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
@@ -85,11 +85,11 @@ public class FTCRedHardware2 {
         lowerLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Define and initialize ALL installed servos.
-        leftGlyph  = hwMap.servo.get("gleft");
-        rightGlyph = hwMap.servo.get("gright");
-        jewel = hwMap.servo.get("jew");
+        leftGlyph  = hwMap.get(Servo.class, "gleft");
+        rightGlyph = hwMap.get(Servo.class, "gright");
         leftGlyph.setPosition(ARM_UP);
         rightGlyph.setPosition(MID_SERVO);
+        jewel = hwMap.get(Servo.class, "jew");
         jewel.setPosition(0);
 
     }

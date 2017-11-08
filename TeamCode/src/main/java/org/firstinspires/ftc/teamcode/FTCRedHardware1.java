@@ -52,7 +52,7 @@ public class FTCRedHardware1 {
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        frontLeftMotor   = hwMap.dcMotor.get( "fleft");
+        frontLeftMotor   = hwMap.get(DcMotor.class, "fleft");
         frontRightMotor  = hwMap.get(DcMotor.class, "fright");
         rearLeftMotor   = hwMap.get(DcMotor.class, "rleft");
         rearRightMotor  = hwMap.get(DcMotor.class, "rright");
