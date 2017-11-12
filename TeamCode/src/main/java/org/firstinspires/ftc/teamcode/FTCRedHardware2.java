@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import org.firstinspires.ftc.teamcode.FTCRedHardware1;
 
 /**
  * Created by nmckelvey on 10/23/17.
@@ -56,7 +58,7 @@ public class FTCRedHardware2 {
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        frontLeftMotor   = hwMap.get(DcMotor.class,"fleft");
+        frontLeftMotor   = hwMap.dcMotor.get("fleft");
         frontRightMotor  = hwMap.get(DcMotor.class,"fright");
         rearLeftMotor   = hwMap.get(DcMotor.class,"rleft");
         rearRightMotor  = hwMap.get(DcMotor.class,"rright");
@@ -66,8 +68,8 @@ public class FTCRedHardware2 {
         frontRightMotor.setDirection(DcMotor.Direction.FORWARD);
         rearLeftMotor.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         rearRightMotor.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
-        upperLiftMotor.setDirection(DcMotor.Direction.REVERSE);
-        lowerLiftMotor.setDirection(DcMotor.Direction.FORWARD);
+        upperLiftMotor.setDirection(DcMotor.Direction.FORWARD);
+        lowerLiftMotor.setDirection(DcMotor.Direction.REVERSE);
         // Set all motors to zero power
         frontLeftMotor.setPower(0);
         frontRightMotor.setPower(0);
@@ -83,7 +85,8 @@ public class FTCRedHardware2 {
         rearRightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         upperLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         lowerLiftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
+        //lowerLiftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+      //  upperLiftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         // Define and initialize ALL installed servos.
         leftGlyph  = hwMap.get(Servo.class, "gleft");
         rightGlyph = hwMap.get(Servo.class, "gright");
