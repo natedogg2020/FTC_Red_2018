@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
+import com.qualcomm.robotcore.hardware.SwitchableLight;
 
 /**
  * Created by nmckelvey on 10/23/17.
@@ -12,7 +14,7 @@ public class FTCRedEncoders extends OpMode {
 
     /* Declare OpMode members. */
     FTCRedHardware2 robot = new FTCRedHardware2(); // use the class created to define a robot's hardware
-
+    NormalizedColorSensor colorSensor;
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -21,6 +23,10 @@ public class FTCRedEncoders extends OpMode {
         /* Initialize the hardware variables.
          * The init() method of the hardware class does all the work here
          */
+
+
+        colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_color");
+        ((SwitchableLight)colorSensor).enableLight(true);
         //Encoder Values
         check = 0;
         uEncoderMax = 1900.00;
@@ -71,7 +77,8 @@ public class FTCRedEncoders extends OpMode {
         telemetry.addData("Upper Lift Encoder", uEncoderVal);
         telemetry.addData("left stick", ly);
         telemetry.addData("right stick", ry);
-
+        telemetry.addData("COLOR VAL ", colorSensor.getNormalizedColors().toString());
+        telemetry.addData("COLOR VAL RED ", colorSensor.getNormalizedColors().red);
         /* <<<<DRIVETRAIN>>>> */
         robot.frontLeftMotor.setPower((ch3 + ch1 - ch4));
         robot.frontRightMotor.setPower((ch3 - ch1 - ch4));
@@ -87,43 +94,26 @@ public class FTCRedEncoders extends OpMode {
         } else {
             robot.upperLiftMotor.setPower(0);
         }
-
-//        if(lEncoderVal>lEncoderMin || lEncoderVal<lEncoderMax || uEncoderVal>uEncoderMin || uEncoderVal<uEncoderMax){
-//
-//            if(ly<=0 && lEncoderVal>lEncoderMin) {
-//                robot.lowerLiftMotor.setPower(ly);
-//            } else if(ly>=0 && lEncoderVal<lEncoderMax) {
-//                robot.lowerLiftMotor.setPower(ly);
-//            } else if(ry<=0 && lEncoderVal>lEncoderMin) {
-//                robot.upperLiftMotor.setPower(ry);
-//            } else if(ry>=0 && lEncoderVal<lEncoderMax) {
-//                robot.upperLiftMotor.setPower(ry);
-//            } else {
-//
-//            }
-//        } else{
-//            robot.lowerLiftMotor.setPower(ly);
-//            robot.lowerLiftMotor.setPower(ry);
-//        }
         /* <<<<SERVOS>>>> */
         if (gamepad2.right_bumper) {
-            robot.rightGlyph.setPosition(1);
-            robot.leftGlyph.setPosition(0);
+            robot.rightGlyph.setPosition(.8);
+            robot.leftGlyph.setPosition(.2);
 
         } else if (gamepad2.left_bumper) {
             robot.rightGlyph.setPosition(0);
             robot.leftGlyph.setPosition(1);
+        } else if(gamepad2.a){
+            robot.rightGlyph.setPosition(.4);
+            robot.leftGlyph.setPosition(.6);
         }
-        // if (!"ly".equals(0))
-        /**
-         *linear lift code
-         if(encoderVal >= encoderLim && gamepad2.right_trigger > 0){
-         robot.liftMotor.setPower(-gamepad2.right_trigger);
-         } else if (gamepad2.left_trigger > 0) {
-         robot.liftMotor.setPower(gamepad2.left_trigger);
-         } else {
-         robot.liftMotor.setPower(0);
-         }
+        if (gamepad2.dpad_left){
+            robot.jewel.setPosition(.3);
+        } else if (gamepad2.dpad_right){
+            robot.jewel.setPosition(1);
+        }
+
+
+
      /*
      * Code to run ONCE after the driver hits STOP
      */

@@ -1,9 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.FTCRedHardware1;
 
@@ -93,7 +96,7 @@ public class FTCRedHardware2 {
         leftGlyph.setPosition(0);
         rightGlyph.setPosition(1);
         jewel = hwMap.get(Servo.class, "jew");
-        jewel.setPosition(0);
+        jewel.setPosition(1);
 
     }
 
