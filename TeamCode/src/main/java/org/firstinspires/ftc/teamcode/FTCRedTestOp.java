@@ -58,8 +58,8 @@ public class FTCRedTestOp extends OpMode {
         ch2 = gamepad1.right_stick_y;
         ch3 = -gamepad1.left_stick_y;
         ch4 = -gamepad1.left_stick_x;
-        ly = gamepad2.left_stick_y;
-        ry = gamepad2.right_stick_y;
+        ly = -gamepad2.left_stick_y;
+        ry = -gamepad2.right_stick_y;
 
         /*
         <<<<DRIVETRAIN>>>>

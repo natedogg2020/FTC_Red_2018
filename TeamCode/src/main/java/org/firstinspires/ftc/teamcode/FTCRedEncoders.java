@@ -23,10 +23,10 @@ public class FTCRedEncoders extends OpMode {
          */
         //Encoder Values
         check = 0;
-        uEncoderMax = 2000.00;
-        uEncoderMin = -200.0;
-        lEncoderMax = -1000;
-        lEncoderMin = 20;
+        uEncoderMax = 1900.00;
+        uEncoderMin = -20.0;
+        lEncoderMax = 1250;
+        lEncoderMin = -20;
         robot.init(hardwareMap);
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Encoders reset, BRAAAAAAH");
@@ -62,25 +62,29 @@ public class FTCRedEncoders extends OpMode {
         ch3 = -gamepad1.left_stick_y;
         ch4 = -gamepad1.left_stick_x;
         //Linear Lift Motors
-        ly = gamepad2.left_stick_y;
-        ry = gamepad2.right_stick_y;
+        ly = -gamepad2.left_stick_y;
+        ry = -gamepad2.right_stick_y;
         //Lift Motor Encoders
         lEncoderVal = robot.lowerLiftMotor.getCurrentPosition();
         telemetry.addData("Lower Lift Encoder", lEncoderVal);
         uEncoderVal = robot.upperLiftMotor.getCurrentPosition();
         telemetry.addData("Upper Lift Encoder", uEncoderVal);
+        telemetry.addData("left stick", ly);
+        telemetry.addData("right stick", ry);
+
         /* <<<<DRIVETRAIN>>>> */
         robot.frontLeftMotor.setPower((ch3 + ch1 - ch4));
         robot.frontRightMotor.setPower((ch3 - ch1 - ch4));
         robot.rearLeftMotor.setPower(ch3 + ch1 + ch4);
         robot.rearRightMotor.setPower(ch3 - ch1 + ch4);
         /* <<<<LIFT MOTORS>>>> */
-        if ((ly <= 0 && lEncoderVal >= lEncoderMin) || (ly >= 0 && lEncoderVal < lEncoderMax)){
+        if ((ly < 0 && lEncoderVal > lEncoderMin) || (ly >= 0 && lEncoderVal <= lEncoderMax)){
             robot.lowerLiftMotor.setPower(ly);
-        } else if ((ry <= 0 && lEncoderVal >= lEncoderMin) || (ry >= 0 && lEncoderVal < lEncoderMax)) {
+        } else{
+            robot.lowerLiftMotor.setPower(0);
+        } if ((ry <= 0 && uEncoderVal > uEncoderMin) || (ry >= 0 && uEncoderVal < uEncoderMax)) {
             robot.upperLiftMotor.setPower(ry);
         } else {
-            robot.lowerLiftMotor.setPower(0);
             robot.upperLiftMotor.setPower(0);
         }
 
@@ -103,12 +107,12 @@ public class FTCRedEncoders extends OpMode {
 //        }
         /* <<<<SERVOS>>>> */
         if (gamepad2.right_bumper) {
-            robot.rightGlyph.setPosition(.6);
+            robot.rightGlyph.setPosition(1);
             robot.leftGlyph.setPosition(0);
 
         } else if (gamepad2.left_bumper) {
             robot.rightGlyph.setPosition(0);
-            robot.leftGlyph.setPosition(.6);
+            robot.leftGlyph.setPosition(1);
         }
         // if (!"ly".equals(0))
         /**

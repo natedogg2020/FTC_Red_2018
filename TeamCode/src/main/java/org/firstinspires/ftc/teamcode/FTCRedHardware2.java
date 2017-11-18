@@ -90,8 +90,8 @@ public class FTCRedHardware2 {
         // Define and initialize ALL installed servos.
         leftGlyph  = hwMap.get(Servo.class, "gleft");
         rightGlyph = hwMap.get(Servo.class, "gright");
-        leftGlyph.setPosition(ARM_UP);
-        rightGlyph.setPosition(MID_SERVO);
+        leftGlyph.setPosition(0);
+        rightGlyph.setPosition(1);
         jewel = hwMap.get(Servo.class, "jew");
         jewel.setPosition(0);
 
