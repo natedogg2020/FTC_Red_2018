@@ -86,20 +86,20 @@ public class FTCRedAutoRed extends LinearOpMode {
                     .addData("b", "%.3f", colors.blue);
             telemetry.update();
             if (colorSensor.getNormalizedColors().red > 0 && runtime.seconds() > 2) {
-                robot.rightGlyph.setPosition(.8);
-                robot.leftGlyph.setPosition(0);
-                robot.frontLeftMotor.setPower(.5);
-                robot.rearLeftMotor.setPower(.5);
-                robot.frontRightMotor.setPower(-.5);
-                robot.rearRightMotor.setPower(-.5);
-                colora = false;
-            } if (colorSensor.getNormalizedColors().red <= 0 && runtime.seconds() > 2 && colora == true) {
                 robot.rightGlyph.setPosition(.4);
                 robot.frontLeftMotor.setPower(-.5);
                 robot.rearLeftMotor.setPower(-.5);
                 robot.frontRightMotor.setPower(.5);
                 robot.rearRightMotor.setPower(.5);
                 colora = false;
+
+            } if (colorSensor.getNormalizedColors().red <= 0 && runtime.seconds() > 2 && colora == true) {
+                robot.rightGlyph.setPosition(.8);
+                robot.leftGlyph.setPosition(0);
+                robot.frontLeftMotor.setPower(.5);
+                robot.rearLeftMotor.setPower(.5);
+                robot.frontRightMotor.setPower(-.5);
+                robot.rearRightMotor.setPower(-.5);
             } else if (colora == false && runtime.seconds() > 2.5) {
                 robot.rightGlyph.setPosition(.4);
                 robot.leftGlyph.setPosition(.6);

@@ -57,7 +57,7 @@ public class FTCRedAutoTimeJewel extends LinearOpMode {
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
-        /*
+
         robot.leftGlyph.setPosition(LO);
         robot.rightGlyph.setPosition(RO);
         robot.jewel.setPosition(JU);
@@ -94,7 +94,7 @@ public class FTCRedAutoTimeJewel extends LinearOpMode {
             telemetry.addData("Path", "Leg 1: %2f S Elapsed", runtime.seconds());
             telemetry.update();
         }
-        */
+
         robot.leftGlyph.setPosition(LO);
         robot.rightGlyph.setPosition(RO);
         robot.jewel.setPosition(JD);
@@ -104,18 +104,6 @@ public class FTCRedAutoTimeJewel extends LinearOpMode {
         robot.rearRightMotor.setPower(0);
         colora = true;
         // Read the sensor
-
-            runtime.reset();
-            robot.leftGlyph.setPosition(LO);
-            robot.rightGlyph.setPosition(RO);
-            robot.jewel.setPosition(JD);
-            robot.frontLeftMotor.setPower(0);
-            robot.rearLeftMotor.setPower(0);
-            robot.frontRightMotor.setPower(0);
-            robot.rearRightMotor.setPower(0);
-            telemetry.addLine("color val");
-                telemetry.addData("COLOR VAL ", colorSensor.getNormalizedColors().toString());
-                telemetry.addData("COLOR VAL RED ", colorSensor.getNormalizedColors().red);
         while (opModeIsActive()&& runtime.seconds() < 10) {
             telemetry.addData("COLOR VAL ", colorSensor.getNormalizedColors().toString());
             telemetry.addData("COLOR VAL RED ", colorSensor.getNormalizedColors().red);
