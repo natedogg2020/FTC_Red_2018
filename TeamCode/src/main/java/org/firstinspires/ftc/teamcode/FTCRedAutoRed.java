@@ -16,9 +16,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="Auto Jewel Red")
 public class FTCRedAutoRed extends LinearOpMode {
-    FTCRedHardware2 robot = new FTCRedHardware2();
-    private ElapsedTime runtime = new ElapsedTime();
-    NormalizedColorSensor colorSensor;
+    FTCRedHardware2 robot = new FTCRedHardware2(); // gets the FTCRedHardware2 class
+    private ElapsedTime runtime = new ElapsedTime(); // Creates new time elapse
+    NormalizedColorSensor colorSensor; // bridges the NormalizedColorSensor class to the object "colorSensor"
 
     double JU;
     double JD;
@@ -36,8 +36,8 @@ public class FTCRedAutoRed extends LinearOpMode {
         RC = 0; //rightGlyph closed position
         JU = 1;
         JD = .3;
-        colora = true;
-        colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_color");
+        colora = true; //sets variable "colora" as true
+        colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_color"); //
         ((SwitchableLight) colorSensor).enableLight(true);
 
 
@@ -53,18 +53,20 @@ public class FTCRedAutoRed extends LinearOpMode {
 
         robot.init(hardwareMap);
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Status", "Ready to run");    //
-        telemetry.update();
-        runtime.reset();
-        // Wait for the game to start (driver presses PLAY)
-        waitForStart();
-        robot.leftGlyph.setPosition(.6);
-        robot.rightGlyph.setPosition(.4);
+        telemetry.addData("Status", "Ready to run");    // adds text "Status: Ready to run" onto driver station
+        telemetry.update();  // updates the driver station to display new data
+        runtime.reset(); // Resets runtime to 0
+
+        waitForStart();             // Wait for the game to start (driver presses PLAY)
+        robot.leftGlyph.setPosition(.6);  //Brings left glyph servo mechanism to a middle position
+        robot.rightGlyph.setPosition(.4);  //Brings right glyph servo mechanism to a middle position
+        //sets all motors to 2/10ths full speed in the forward direction
         robot.frontLeftMotor.setPower(.2);
         robot.frontRightMotor.setPower(.2);
         robot.rearLeftMotor.setPower(.2);
         robot.rearRightMotor.setPower(.2);
-        runtime.reset();
+
+        runtime.reset(); // Resets runtime to 0
         while (opModeIsActive() && (runtime.seconds() < 2)) {
             telemetry.addData("Path", "Leg 1: %2f S Elapsed", runtime.seconds());
             telemetry.update();
@@ -73,7 +75,7 @@ public class FTCRedAutoRed extends LinearOpMode {
         robot.rearLeftMotor.setPower(0);
         robot.frontRightMotor.setPower(0);
         robot.rearRightMotor.setPower(0);
-        runtime.reset();
+        runtime.reset();    // Resets runtime to 0
         while (opModeIsActive()&& runtime.seconds() < 10) {
             telemetry.addData("COLOR VAL ", colorSensor.getNormalizedColors().toString());
             telemetry.addData("COLOR VAL RED ", colorSensor.getNormalizedColors().red);
